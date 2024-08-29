@@ -25,6 +25,12 @@ export const piniaMusicStore = defineStore('music', () => {
 		playerVisible.value = flag
 	}
 
+	// 当前播放歌曲激活歌词索引
+	const curLyricActiveIndex = ref(0)
+	const setCurLyricActiveIndex = (index: number) => {
+		curLyricActiveIndex.value = index
+	}
+
 	// 当前播放歌曲列表
 	const curPlaySongList = ref<MusicItem[]>([])
 	const setCurPlaySongList = (list: MusicItem[]) => {
@@ -34,6 +40,7 @@ export const piniaMusicStore = defineStore('music', () => {
 	// 当前播放歌曲
 	const curPlaySong = ref<MusicItem | undefined>(curPlaySongList.value[0])
 	const setCurPlaySong = (song: MusicItem) => {
+		setCurLyricActiveIndex(0)
 		curPlaySong.value = song
 	}
 
@@ -47,12 +54,6 @@ export const piniaMusicStore = defineStore('music', () => {
 		} else {
 			isPlay.value = flag
 		}
-	}
-
-	// 当前播放歌曲激活歌词索引
-	const curLyricActiveIndex = ref(0)
-	const setCurLyricActiveIndex = (index: number) => {
-		curLyricActiveIndex.value = index
 	}
 
 	// 当前歌曲播放秒数
