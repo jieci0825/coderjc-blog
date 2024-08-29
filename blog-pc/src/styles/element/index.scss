@@ -1,0 +1,11 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+	$colors: (
+		//这里定义在亮色模式下的颜色
+		'primary': ('base': #5149e4),
+		'success': ('base': #00a389),
+		'warning': ('base': #fd5e0f),
+		'danger': ('base': #ff5b5b),
+		'error': ('base': #ff5b5b),
+		'info': ('base': #8a96b1)
+	)
+);

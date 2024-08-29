@@ -1,0 +1,70 @@
+.toastui-editor-defaultUI {
+	min-height: 500px;
+	border-color: var(--border-color) !important;
+	transition: var(--bg-color-transition);
+	.toastui-editor-defaultUI-toolbar {
+		transition: var(--bg-color-transition);
+		background-color: var(--el-color-primary-light-9);
+		border-bottom-color: var(--border-color);
+		button {
+			transition: var(--bg-color-transition);
+			color: var(--el-text-color-primary);
+			border-color: var(--el-text-color-placeholder);
+			background-color: var(--el-color-primary-light-9);
+		}
+		input:checked + .switch {
+			transition: var(--bg-color-transition);
+			background-color: var(--el-color-primary-light-5);
+			&::before {
+				background-color: var(--el-color-primary);
+			}
+		}
+		.scroll-sync.active {
+			&::before {
+				color: var(--el-color-primary);
+			}
+		}
+	}
+	.toastui-editor-mode-switch {
+		height: 32px;
+		padding-right: 0;
+		border-top: none;
+		background-color: var(--el-color-primary-light-9);
+		transition: var(--bg-color-transition);
+		.tab-item {
+			font-size: 14px;
+			height: 30px;
+			line-height: 30px;
+			border: none;
+			color: var(--el-text-color-secondary);
+			background-color: var(--el-color-primary-light-7);
+			transition: var(--bg-color-transition);
+			border-top: none;
+			&.active {
+				border-top: none;
+				background-color: var(--el-color-primary-light-5);
+				color: var(--el-color-primary);
+			}
+		}
+	}
+
+	.toastui-editor-main {
+		.toastui-editor-main-container {
+			.ProseMirror {
+				color: var(--el-text-color-primary);
+				font-size: 16px;
+				&.toastui-editor-contents {
+					background-color: var(--bg-color);
+				}
+			}
+		}
+		.toastui-editor-md-splitter {
+			background-color: var(--border-color);
+			transition: var(--bg-color-transition);
+		}
+	}
+
+	.toastui-editor-contents {
+		font-size: 16px;
+	}
+}

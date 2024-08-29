@@ -1,0 +1,87 @@
+@baseTimingFunction: cubic-bezier(1, 0.5, 0.8, 1);
+@baseDuration: 0.3s;
+
+// 淡入淡出
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+	opacity: 1;
+}
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity @baseDuration @baseTimingFunction;
+}
+
+// 卷帘门
+.fade-in-enter-from,
+.fade-in-leave-to {
+	opacity: 0;
+	transform: scaleY(0);
+}
+.fade-in-enter-to,
+.fade-in-leave-from {
+	opacity: 1;
+	transform: scaleY(1);
+}
+.fade-in-enter-active,
+.fade-in-leave-active {
+	transition: opacity @baseDuration @baseTimingFunction, transform @baseDuration @baseTimingFunction;
+	transform-origin: center top;
+}
+
+// 切换滑动 + 淡入淡出
+.slide-fade-enter-active {
+	transition: all 0.3s ease-out;
+}
+.slide-fade-leave-active {
+	transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+	transform: translateX(20px);
+	opacity: 0;
+}
+
+// 滑动
+.slide-enter-from {
+	transform: translateX(-100%);
+	opacity: 0.5;
+}
+.slide-enter-to,
+.slide-leave-from {
+	transform: translateX(0);
+	opacity: 1;
+}
+.slide-leave-to {
+	transform: translateX(100%);
+	opacity: 0.5;
+}
+.slide-enter-active,
+.slide-leave-active {
+	transition: transform 0.3s ease;
+}
+
+// 左进右出
+.left-in-right-out-enter-active,
+.left-in-right-out-leave-active {
+	transition: transform 0.25s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.left-in-right-out-enter-from {
+	transform: translateX(100%);
+	opacity: 0;
+}
+.left-in-right-out-enter-to {
+	transform: translateX(0);
+}
+
+.left-in-right-out-leave-from {
+	transform: translateX(0);
+}
+
+.left-in-right-out-leave-to {
+	transform: translateX(100%);
+}

@@ -1,0 +1,7 @@
+export * as globalApi from './modules/global'
+export * as blogApi from './modules/blog'
+export * as userApi from './modules/user'
+export * as commentApi from './modules/comment'
+export * as behaviorApi from './modules/behavior'
+export * as friendChainApi from './modules/friend-chain'
+export * as musicApi from './modules/music'

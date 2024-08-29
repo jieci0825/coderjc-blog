@@ -1,0 +1,17 @@
+//jsconfig.json file
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"],
+			"@model/*": ["src/app/models/*"],
+			"@api-front/*": ["src/app/apis/front/*"],
+			"@api-back/*": ["src/app/apis/back/*"],
+			"@ser-front/*": ["src/app/services/front/*"],
+			"@ser-back/*": ["src/app/services/back/*"],
+			"@con-front/*": ["src/app/controllers/front/*"],
+			"@con-back/*": ["src/app/controllers/back/*"]
+		}
+	},
+	"exclude": ["node_modules"]
+}

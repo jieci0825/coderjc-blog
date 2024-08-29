@@ -1,0 +1,133 @@
+:root {
+	// 版心宽度
+	--center-width: 1280px;
+	/* 主题 */
+	--primary-color: var(--el-color-primary);
+	/* 头部 高度 */
+	--header-height: 60px;
+	/* 背景颜色 */
+	--bg-color: #fff;
+	--bg-color-1: #f6f6f7;
+	--bg-color-2: #f6f6f7;
+	--aside-bg-color: var(--bg-color);
+	/* 阴影 */
+	--bbs: rgba(0, 0, 0, 0);
+	--bbs-1: rgba(0, 0, 0, 0.1);
+	--base-box-shadow: var(--bbs) 0px 0px 0px 0px, var(--bbs) 0px 0px 0px 0px, var(--bbs-1) 0px 1px 3px 0px,
+		var(--bbs-1) 0px 1px 2px -1px;
+	--base-box-shadow-1: var(--bbs) 0px 0px 0px 0px, var(--bbs) 0px 0px 0px 0px, var(--bbs-1) 0px 0px 3px 0px,
+		var(--bbs-1) 0px 0px 2px -1px;
+	--filter-shadow: drop-shadow(0px 0px 3px var(--bbs-1));
+	/* 圆角 */
+	--base-b-r: 6px;
+	/* text */
+	--text-color: var(--el-color-info);
+	// 边框
+	--border-color: #e4e7ed;
+	// 滚动条
+	--scroll-color: #ccc;
+	// 蒙层
+	--mask-color: rgba(44, 57, 105, 0.8);
+	/* markdown */
+	--md-body-text-color: #515767;
+	--md-title-h-color: #3c3c43;
+	--md-blockquote-bg: var(--el-color-primary-light-9);
+	--md-blockquote-text-color: var(--text-color-4);
+	--md-blockquote-border-left-color: var(--primary-color);
+	--md-inline-code-bg-color: var(--el-color-primary-light-9);
+	--md-inline-code-text-color: var(--primary-color);
+	--md-pre-bg-color: #292d3e;
+	--md-a-text-color: var(--primary-color);
+
+	/* el */
+	--el-menu-item-height: 45px !important;
+	--el-font-size-base: 16px !important;
+	--bg-color-transition: background-color 0.3s;
+
+	// album
+	--album-bs-color: #f1f1f1;
+	--album-bs-color-2: #fff;
+	--album-bs-color-3: #c3c3c3;
+	--album-shadow-1: 5px 5px 10px var(--album-bs-color-3), -5px -5px 10px #fff;
+	--album-shadow-2: var(--album-bs-color-2) 0 0 4px 2px;
+	--album-shadow-3: var(--album-bs-color-2) 0 0 6px 4px;
+	--album-shadow-4: drop-shadow(0px 0px 3px var(--album-bs-color-3));
+	--album-shadow-5: 4px 4px 7px #c5c5c5, -4px -4px 6px #fbfbfb;
+	--album-bg-color: #fbfbfb;
+	--album-arm-color: var(--album-bs-color);
+	--album-arm-color-1: var(--album-bs-color);
+	--album-border-color: #f0f0f0;
+	--album-image-border-color: var(var(--border-color));
+	--album-line-bg: repeating-radial-gradient(#f1f2f6, #dfdfdf 4px, #dfdfdf 7px);
+	--album-circle-bg: linear-gradient(145deg, #fff 30%, #cfcfcf);
+	--album-ray-bg: linear-gradient(
+		45deg,
+		transparent 30%,
+		rgba(255, 255, 255, 0.4) 45%,
+		rgba(255, 255, 255, 0.5) 50%,
+		rgba(255, 255, 255, 0.4) 55%,
+		transparent 70%
+	);
+	--lyric-gradual-1: linear-gradient(to bottom, var(--bg-color) 1%, transparent);
+	--lyric-gradual-2: linear-gradient(to bottom, transparent 1%, var(--bg-color));
+	--lyric-bg-color: rgba(0, 0, 0, 0.7);
+	--lyric-controller-text-color-1: #c1bcbc;
+	--lyric-controller-text-color-2: #fff;
+
+	--progress-bg-color: #f1f1f1;
+	--progress-color: var(--primary-color);
+}
+
+html.dark {
+	--bg-color: #000;
+	--bg-color-1: #000101;
+	--text-color: #e5e3fa;
+	--aside-bg-color: #141414;
+	--border-color: #414243;
+	--bg-color-2: #414243;
+	/* 阴影 */
+	--bbs: rgba(255, 255, 255, 0.1);
+	--bbs-1: rgba(255, 255, 255, 0.2);
+	--base-box-shadow: var(--bbs) 0px 0px 0px 0px, var(--bbs) 0px 0px 0px 0px, var(--bbs-1) 0px 1px 3px 0px,
+		var(--bbs-1) 0px 1px 2px -1px;
+	--base-box-shadow-1: var(--bbs) 0px 0px 0px 0px, var(--bbs) 0px 0px 0px 0px, var(--bbs-1) 0px 0px 3px 0px,
+		var(--bbs-1) 0px 0px 2px -1px;
+
+	// album
+	--album-bs-color: #494848;
+	--album-bs-color-2: #0f0e0e;
+	--album-bs-color-3: #101010;
+	--album-shadow-1: 5px 5px 10px var(--album-bs-color-3), -5px -5px 10px #161616;
+	--album-shadow-2: var(--album-bs-color-2) 0 0 4px 2px;
+	--album-shadow-3: var(--album-bs-color-2) 0 0 6px 4px;
+	--album-shadow-4: drop-shadow(0px 0px 3px var(--album-bs-color-3));
+	--album-shadow-5: 4px 4px 7px #101010, -4px -4px 6px #161616;
+	--album-bg-color: #131313;
+	--album-arm-color: var(--album-bs-color);
+	--album-arm-color-1: var(--album-bs-color);
+	--album-border-color: #1f1f1f;
+	--album-image-border-color: var(var(--border-color));
+	--album-line-bg: repeating-radial-gradient(#343333, #3e3c3c 4px, #3e3c3c 7px);
+	--album-circle-bg: linear-gradient(145deg, #494848 30%, #242424);
+	--album-ray-bg: linear-gradient(
+		45deg,
+		transparent 30%,
+		rgba(255, 255, 255, 0.4) 45%,
+		rgba(255, 255, 255, 0.5) 50%,
+		rgba(255, 255, 255, 0.4) 55%,
+		transparent 70%
+	);
+	--lyric-gradual-1: linear-gradient(to bottom, var(--album-bg-color) 1%, transparent);
+	--lyric-gradual-2: linear-gradient(to bottom, transparent 1%, var(--album-bg-color));
+	--lyric-bg-color: rgba(255, 255, 255, 0.2);
+	--lyric-controller-text-color-1: #9ba3ad;
+	--lyric-controller-text-color-2: #f1f1f1;
+
+	--progress-bg-color: #494848;
+	--progress-color: var(--primary-color);
+}
+
+// 媒体查询
+@size-xs: 640px;
+@size-sm: 768px;
+@size-md: 960px;

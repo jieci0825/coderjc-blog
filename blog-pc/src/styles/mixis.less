@@ -1,0 +1,27 @@
+// 多行行文本溢出
+.more-omit (@row:2) {
+	overflow: hidden; /* 隐藏溢出内容 */
+	display: -webkit-box;
+	-webkit-line-clamp: @row; /* 显示的行数 */
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis; /* 显示省略号 */
+}
+
+// 单行文本溢出
+.one-omit() {
+	// 盒子需要为 block
+	overflow: hidden;
+	white-space: nowrap; /* 防止换行 */
+	text-overflow: ellipsis; /* 显示省略号 */
+}
+
+// 分割
+.divider(@gap:12px, @w:1px, @h:12px, @c:#c2c8d1) {
+	display: inline-block;
+	width: @w;
+	height: @h;
+	margin: 0 @gap;
+	background-color: @c;
+}
+
+

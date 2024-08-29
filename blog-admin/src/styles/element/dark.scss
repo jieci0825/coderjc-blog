@@ -1,0 +1,13 @@
+@forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+	$colors: (
+		//这里定义在暗黑模式下的颜色
+		// 'success': ('base': #008c8a),
+		'success': ('base': #019d78),
+		'warning': ('base': #fd5e0f),
+		'danger': ('base': #d13918),
+		'error': ('base': #d13918),
+		'info': ('base': #7a818e)
+	)
+);
+
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
