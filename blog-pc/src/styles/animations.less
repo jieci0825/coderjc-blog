@@ -63,3 +63,22 @@
 .slide-leave-active {
 	transition: transform 0.3s ease;
 }
+
+// 左进右出
+.left-in-right-out-enter-active,
+.left-in-right-out-leave-active {
+	transition: transform 0.25s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.left-in-right-out-enter-from {
+	transform: translateX(100%);
+	opacity: 0;
+}
+.left-in-right-out-enter-to {
+	transform: translateX(0);
+}
+.left-in-right-out-leave-from {
+	transform: translateX(0);
+}
+.left-in-right-out-leave-to {
+	transform: translateX(100%);
+}

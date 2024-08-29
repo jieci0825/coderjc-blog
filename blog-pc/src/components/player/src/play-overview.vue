@@ -40,6 +40,10 @@ const playSong = (item: MusicItem) => {
 			</div>
 		</div>
 		<div class="song-list">
+			<div class="song-list-header">
+				<span class="text">歌曲列表</span>
+				<span class="count">共{{ getCurPlaySongList.length || 0 }}首</span>
+			</div>
 			<template v-if="getCurPlaySongList.length">
 				<div
 					@click="playSong(item)"
@@ -135,6 +139,19 @@ const playSong = (item: MusicItem) => {
 		&::-webkit-scrollbar {
 			width: 0;
 			height: 0;
+		}
+		.song-list-header {
+			width: 100%;
+			.text {
+				font-size: 20px;
+				font-weight: 600;
+				color: var(--el-text-color-primary);
+			}
+			.count {
+				margin-left: 10px;
+				font-size: 16px;
+				color: var(--el-text-color-regular);
+			}
 		}
 		.song-item {
 			padding: 10px 20px;

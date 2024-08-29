@@ -329,22 +329,22 @@ const handleClose = () => {
 				padding: 10px 0;
 			}
 		}
+	}
+}
 
-		.pop-up-wrap {
-			position: absolute;
-			right: 0;
-			top: 0;
-			width: 480px;
-			height: calc(100% - 80px);
-			background-color: var(--el-color-primary-light-8);
-			z-index: 200;
-			border-radius: 8px;
-			overflow: hidden auto;
-			&::-webkit-scrollbar {
-				width: 0;
-				height: 0;
-			}
-		}
+.pop-up-wrap {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 480px;
+	height: calc(100% - 80px);
+	background-color: var(--el-color-primary-light-8);
+	z-index: 200;
+	border-radius: 8px;
+	overflow: hidden auto;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
 	}
 }
 </style>
