@@ -160,11 +160,7 @@ const footerConfig = computed(() => {
 })
 
 const handleClose = () => {
-	if (isDetail.value) {
-		isDetail.value = false
-	} else {
-		setPlayerVisible(false)
-	}
+	setPlayerVisible(false)
 }
 </script>
 
@@ -173,68 +169,69 @@ const handleClose = () => {
 		<div
 			class="player-wrapper"
 			title="">
-			<div class="header-wrap">
-				<span class="title">{{ isDetail ? '歌曲详情' : '歌曲概览' }}</span>
-				<div class="right">
-					<el-icon
-						@click="isDetail = false"
-						v-if="isDetail"
-						:size="24"
-						title="返回">
-						<DArrowLeft />
-					</el-icon>
-					<el-icon
-						@click="handleClose"
-						:size="24"
-						title="关闭">
-						<Close />
-					</el-icon>
+			<div class="player-box">
+				<div class="header-wrap">
+					<span class="title">{{ isDetail ? '歌曲详情' : '歌曲概览' }}</span>
+					<div class="right">
+						<el-icon
+							@click="isDetail = false"
+							v-if="isDetail"
+							:size="24"
+							title="返回">
+							<DArrowLeft />
+						</el-icon>
+						<el-icon
+							@click="handleClose"
+							:size="24"
+							title="关闭">
+							<Close />
+						</el-icon>
+					</div>
 				</div>
-			</div>
-			<div class="main-wrap">
-				<PlayDetail v-if="isDetail" />
-				<PlayOverview
-					v-else
-					@open-detail="isDetail = true" />
-			</div>
+				<div class="main-wrap">
+					<PlayDetail v-if="isDetail" />
+					<PlayOverview
+						v-else
+						@open-detail="isDetail = true" />
+				</div>
 
-			<!-- 音频可视化 -->
-			<div
-				v-show="isDetail"
-				:ref="setRef('audioVisualRef')"
-				class="audio-visual-wrap">
-				<canvas
-					:ref="setRef('canvasRef')"
-					id="audio-visual-canvas"></canvas>
-			</div>
-
-			<!-- 页脚功能区域 -->
-			<div class="footer-wrap">
-				<PlayFooter
-					@change-progress="changeProgress"
-					@on-actions="onActions"
-					:play-config="footerConfig">
-					<template #coverMask>
-						<span
-							@click="isDetail = !isDetail"
-							:class="['iconfont', isDetail ? 'icon-down' : 'icon-up']"></span>
-					</template>
-				</PlayFooter>
-			</div>
-
-			<Transition name="left-in-right-out">
+				<!-- 音频可视化 -->
 				<div
-					@click.stop="1"
-					class="pop-up-wrap"
-					v-if="popUpWrap">
-					<template v-if="popUpComponentName === EPlayFooterAction.PLAYER_STYLE">
-						<PlayerStyle></PlayerStyle>
-					</template>
-					<template v-else-if="popUpComponentName === EPlayFooterAction.PLAY_SONG_LIST">
-						<PlaySongList></PlaySongList>
-					</template>
+					v-show="isDetail"
+					:ref="setRef('audioVisualRef')"
+					class="audio-visual-wrap">
+					<canvas
+						:ref="setRef('canvasRef')"
+						id="audio-visual-canvas"></canvas>
 				</div>
-			</Transition>
+
+				<!-- 页脚功能区域 -->
+				<div class="footer-wrap">
+					<PlayFooter
+						@change-progress="changeProgress"
+						@on-actions="onActions"
+						:play-config="footerConfig">
+						<template #coverMask>
+							<span
+								@click="isDetail = !isDetail"
+								:class="['iconfont', isDetail ? 'icon-down' : 'icon-up']"></span>
+						</template>
+					</PlayFooter>
+				</div>
+				<Transition name="left-in-right-out">
+					<div
+						@click.stop="1"
+						class="pop-up-wrap"
+						v-if="popUpWrap">
+						<template v-if="popUpComponentName === EPlayFooterAction.PLAYER_STYLE">
+							<PlayerStyle></PlayerStyle>
+						</template>
+						<template v-else-if="popUpComponentName === EPlayFooterAction.PLAY_SONG_LIST">
+							<PlaySongList></PlaySongList>
+						</template>
+					</div>
+				</Transition>
+			</div>
 		</div>
 	</div>
 </template>
@@ -252,14 +249,10 @@ const handleClose = () => {
 	.player-wrapper {
 		width: 70vw;
 		min-width: 1024px;
-		height: 700px;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-		border-radius: 8px;
-		background-color: var(--aside-bg-color);
+		height: 0;
+		padding-bottom: 40vw;
+		min-height: 660px;
 		position: relative;
-		padding: 0 20px;
 		@media (max-width: @size-xs) {
 			width: 100vw;
 			min-width: 0;
@@ -267,61 +260,76 @@ const handleClose = () => {
 			border-radius: 0;
 			padding: 0 10px;
 		}
-		.header-wrap {
-			flex-shrink: 0;
-			height: 50px;
-			margin-bottom: 20px;
-			position: relative;
+		.player-box {
+			position: absolute;
+			inset: 0;
 			display: flex;
-			align-items: center;
+			flex-direction: column;
+			overflow: hidden;
+			border-radius: 8px;
+			background-color: var(--aside-bg-color);
+			padding: 0 20px;
 			@media (max-width: @size-xs) {
-				margin-bottom: 10px;
+				border-radius: 0;
+				padding: 0 10px;
 			}
-			.title {
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				color: var(--el-text-color-primary);
-				font-size: 25px;
-				font-weight: bold;
-				@media (max-width: @size-xs) {
-					font-size: 22px;
-					transform: translate(-50%, -50%);
-				}
-			}
-			.right {
-				margin-left: auto;
+			.header-wrap {
+				flex-shrink: 0;
+				height: 50px;
+				margin-bottom: 20px;
+				position: relative;
 				display: flex;
 				align-items: center;
-				gap: 10px;
+				@media (max-width: @size-xs) {
+					margin-bottom: 10px;
+				}
+				.title {
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					color: var(--el-text-color-primary);
+					font-size: 25px;
+					font-weight: bold;
+					@media (max-width: @size-xs) {
+						font-size: 22px;
+						transform: translate(-50%, -50%);
+					}
+				}
+				.right {
+					margin-left: auto;
+					display: flex;
+					align-items: center;
+					gap: 10px;
+				}
+			}
+			.main-wrap {
+				width: 100%;
+				flex: 1;
+				overflow: hidden;
+			}
+			.audio-visual-wrap {
+				position: absolute;
+				left: 0;
+				bottom: 80px;
+				width: 100%;
+				height: 80px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				overflow: hidden;
+				@media (max-width: @size-xs) {
+					display: none;
+				}
+			}
+			.footer-wrap {
+				flex-shrink: 0;
+				height: 80px;
+				border-top: 1px solid var(--border-color);
+				padding: 10px 0;
 			}
 		}
-		.main-wrap {
-			width: 100%;
-			flex: 1;
-			overflow: hidden;
-		}
-		.audio-visual-wrap {
-			position: absolute;
-			left: 0;
-			bottom: 80px;
-			width: 100%;
-			height: 80px;
-			display: flex;
-			align-items: flex-end;
-			justify-content: center;
-			overflow: hidden;
-			@media (max-width: @size-xs) {
-				display: none;
-			}
-		}
-		.footer-wrap {
-			flex-shrink: 0;
-			height: 80px;
-			border-top: 1px solid var(--border-color);
-			padding: 10px 0;
-		}
+
 		.pop-up-wrap {
 			position: absolute;
 			right: 0;
