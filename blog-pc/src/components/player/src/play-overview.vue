@@ -142,15 +142,24 @@ const playSong = (item: MusicItem) => {
 		}
 		.song-list-header {
 			width: 100%;
+			@media (max-width: @size-xs) {
+				margin-top: 5px;
+			}
 			.text {
 				font-size: 20px;
 				font-weight: 600;
 				color: var(--el-text-color-primary);
+				@media (max-width: @size-xs) {
+					font-size: 18px;
+				}
 			}
 			.count {
 				margin-left: 10px;
 				font-size: 16px;
 				color: var(--el-text-color-regular);
+				@media (max-width: @size-xs) {
+					font-size: 14px;
+				}
 			}
 		}
 		.song-item {
