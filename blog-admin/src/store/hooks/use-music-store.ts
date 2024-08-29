@@ -36,7 +36,13 @@ export const useMusicGetters = () => {
 	// 获取当前播放歌曲列表
 	const getCurPlaySongList = computed(() => globalStore.curPlaySongList)
 	// 获取当前播放歌曲的歌词列表
-	const getCurPlaySongLyricList = computed<LyricItem[]>(() => formatLrc(getCurPlaySong.value?.lyric || '') || [])
+	const getCurPlaySongLyricList = computed<LyricItem[]>(() => {
+		let lyric = ''
+		try {
+			lyric = JSON.stringify(getCurPlaySong.value?.lyric || '')
+		} catch (error) {}
+		return formatLrc(lyric) || []
+	})
 	// 当前激活歌词的索引
 	const getCurLyricActiveIndex = computed(() => globalStore.curLyricActiveIndex)
 	// 获取当前播放歌曲的秒数

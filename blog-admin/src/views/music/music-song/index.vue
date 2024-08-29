@@ -62,7 +62,7 @@ const handleTableDelete = async (row: MusicItem) => {
 const { refs, setRef } = useRefs()
 
 const handleSubmit = async (payload: any) => {
-	const data = { ...payload, lyric: JSON.stringify(payload.lyric) }
+	const data = { ...payload }
 	// 处理文件
 	if (data.songCover && typeof data.songCover !== 'string') {
 		const result = await uploadFile(data.songCover as unknown as File)
