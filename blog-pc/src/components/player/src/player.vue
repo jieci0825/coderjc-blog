@@ -8,7 +8,7 @@ import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRefs } from '@/hooks/use-refs'
 import { useAudioVisual, useEventListener } from '@/hooks'
 import { useMusicActions, useMusicGetters } from '@/store'
-import { Close } from '@element-plus/icons-vue'
+import { Close, DArrowLeft } from '@element-plus/icons-vue'
 import { EPlayFooterAction, EPlayMode, type PlayFooterActionType, type PlayFooterConfig } from './player'
 
 const { getCurPlaySong, getIsPlay, getCurPlaySongLyricList, getPlayMode, getCurPlaySongTotalSec } = useMusicGetters()
@@ -177,6 +177,13 @@ const handleClose = () => {
 				<span class="title">{{ isDetail ? '歌曲详情' : '歌曲概览' }}</span>
 				<div class="right">
 					<el-icon
+						@click="isDetail = false"
+						v-if="isDetail"
+						:size="24"
+						title="返回">
+						<DArrowLeft />
+					</el-icon>
+					<el-icon
 						@click="handleClose"
 						:size="24"
 						title="关闭">
@@ -187,8 +194,8 @@ const handleClose = () => {
 			<div class="main-wrap">
 				<PlayDetail v-if="isDetail" />
 				<PlayOverview
-					@open-detail="isDetail = true"
-					v-else />
+					v-else
+					@open-detail="isDetail = true" />
 			</div>
 
 			<!-- 音频可视化 -->
@@ -285,6 +292,9 @@ const handleClose = () => {
 			}
 			.right {
 				margin-left: auto;
+				display: flex;
+				align-items: center;
+				gap: 10px;
 			}
 		}
 		.main-wrap {

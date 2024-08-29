@@ -15,7 +15,7 @@ export function useMusicConfig() {
 		lyricVisible: false,
 		lyricFontSize: 30,
 		lyricLock: false,
-		lyricDirection: 'vertical',
+		lyricDirection: 'horizontal',
 		lyricRows: 2
 	}
 	const musicConfig = reactive<MusicConfig>(Object.assign(defaultMusicConfig, getLocalCache(BLOG_MUSIC_CONFIG) || {}))
