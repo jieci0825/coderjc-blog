@@ -183,6 +183,14 @@ async function editBlog(data) {
  */
 async function deleteBlog(id) {
 	const result = await sequelize.transaction(async t => {
+		// 博客的分类数量减1
+		const blog = await Blog.findOne({ where: { id } })
+		if (!blog) throw new NotFound('博客不存在')
+		const categoryId = blog.category_id
+		if (categoryId) {
+			const category = await BlogCategory.findOne({ where: { id: categoryId } })
+			category && (await category.decrement('blog_nums', { by: 1, transaction: t }))
+		}
 		// 删除之前的标签关联
 		await BlogTagUnite.destroy({ where: { blog_id: id }, force: true, transaction: t })
 		await Blog.destroy({ where: { id }, force: true, transaction: t })
