@@ -4,6 +4,6 @@ import registerDirectives from './register-directives'
 
 // 注册服务
 export function registerApp(app: App) {
-	app.use(registerComponents)
-	app.use(registerDirectives)
+	registerComponents(app)
+	registerDirectives(app)
 }
