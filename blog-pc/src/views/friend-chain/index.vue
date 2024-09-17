@@ -28,7 +28,9 @@ reqGetFriendChainList()
 					v-for="link in item.linkList"
 					:key="link.id">
 					<div class="link-item">
-						<a :href="link.linkUrl">
+						<a
+							:href="link.linkUrl"
+							target="_blank">
 							<div class="preview">
 								<img :src="link.linkPreview" />
 							</div>
