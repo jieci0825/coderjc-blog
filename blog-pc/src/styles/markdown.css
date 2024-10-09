@@ -132,8 +132,8 @@
 	margin: 0;
 	color: var(--fgColor-default);
 	background-color: var(--bgColor-default);
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-	font-size: 16px;
+	font-family: 'FiraCode-Regular', 'FZKai-Z03s';
+	font-size: 18px;
 	line-height: 1.5;
 	word-wrap: break-word;
 	scroll-behavior: auto;
@@ -239,7 +239,8 @@
 .markdown-body kbd,
 .markdown-body pre,
 .markdown-body samp {
-	font-family: monospace;
+	/* font-family: monospace; */
+	font-family: 'FiraCode-Regular', 'FZKai-Z03s';
 	font-size: 1em;
 }
 
