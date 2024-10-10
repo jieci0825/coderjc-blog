@@ -130,11 +130,10 @@
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	margin: 0;
-	color: var(--fgColor-default);
-	background-color: var(--bgColor-default);
 	font-family: 'FiraCode-Regular', 'FZKai-Z03s';
 	font-size: 18px;
 	line-height: 1.5;
+	color: var(--el-text-color-regular);
 	word-wrap: break-word;
 	scroll-behavior: auto;
 }
@@ -441,9 +440,11 @@
 
 .markdown-body blockquote {
 	margin: 0;
-	padding: 0 1em;
-	color: var(--fgColor-muted);
-	border-left: .25em solid var(--borderColor-default);
+	padding: .5em 1em;
+	border-left: .25em solid var(--el-color-primary);
+	color: var(--el-text-color-primary);
+	background-color: var(--el-color-primary-light-9);
+	transition: background-color 0.3s ease-in-out;
 }
 
 .markdown-body ul,
