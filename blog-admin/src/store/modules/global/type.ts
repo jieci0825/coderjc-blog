@@ -1,5 +1,5 @@
 import { LAYOUT_MODE } from '@/constants'
-import type { AlbumModeType, MusicEffectType } from '@/views/music/music-song/types'
+import type { AlbumModeType, MusicEffectType } from '@/components/player'
 
 export type LayoutModeType = (typeof LAYOUT_MODE)[keyof typeof LAYOUT_MODE]
 
