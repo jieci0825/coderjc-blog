@@ -114,8 +114,16 @@ function getHtml() {
 	return editor.getHTML()
 }
 
+function getMarkdown() {
+	return editor.getMarkdown()
+}
+
 function setHtml(val: string) {
 	editor.setHTML(val)
+}
+
+function setMarkdown(val: string) {
+	editor.setMarkdown(val)
 }
 
 function clear() {
@@ -124,8 +132,10 @@ function clear() {
 
 defineExpose({
 	getHtml,
-	clear,
-	setHtml
+	setHtml,
+	getMarkdown,
+	setMarkdown,
+	clear
 })
 </script>
 
@@ -133,7 +143,8 @@ defineExpose({
 	<div class="editor-wrapper">
 		<div
 			class="markdown-editor markdown-body"
-			ref="editorRef"></div>
+			ref="editorRef"
+		></div>
 	</div>
 </template>
 

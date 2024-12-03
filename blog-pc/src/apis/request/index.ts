@@ -4,6 +4,7 @@ import JcRequest from './request'
 import { BASE_URL, TIME_OUT } from './config'
 import { getLocalCache, setLocalCache } from '@/utils'
 import { BLOG_REFRESH_TOKEN, BLOG_TOKEN } from '@/constants'
+import { useGlobalActions } from '@/store'
 
 const refreshIns = axios.create()
 
@@ -21,10 +22,19 @@ const jcRequest: JcRequest = new JcRequest({
 			return res.data
 		},
 		async responseInterceptorsCatch(error) {
+			const { logout } = useGlobalActions()
+
 			const originRequest = error.config
 			const errInfo = error.response?.data
 			console.log('errInfo: ', errInfo)
 			if (errInfo) {
+				// 如果自定义错误码为 7777 则表示刷新令牌也过期，需要重新登录
+				if (errInfo.errorCode === 7777) {
+					// 清除登录信息，跳转到登录页面
+					logout()
+					router.push(`/login?redirect=${router.currentRoute.value.fullPath}`)
+					return
+				}
 				// 如果自定义错误码为 9999 则表示 token 令牌过期重新获取 token 令牌
 				if (!originRequest._retry && errInfo.errorCode === 9999) {
 					try {
@@ -53,6 +63,7 @@ const jcRequest: JcRequest = new JcRequest({
 							type: 'warning'
 						})
 							.then(() => {
+								logout()
 								router.push(`/login?redirect=${router.currentRoute.value.fullPath}`)
 							})
 							.catch()

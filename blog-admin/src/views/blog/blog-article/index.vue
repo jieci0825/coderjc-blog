@@ -49,6 +49,7 @@ const handleSubmit = async (data: BlogItem) => {
 		data.previewUrl = result.url
 	}
 	data.htmlContent = refs.editorRef.getHtml()
+	data.mdContent = refs.editorRef.getMarkdown()
 	const resp = await blogApi.reqEditBlog(data)
 	ElMessage.success(resp.msg)
 	dialogVisable.value = false
@@ -80,17 +81,20 @@ const usePageContent = {
 			:use-page-content="usePageContent"
 			:form-config="blogSearchFormConfig"
 			:tableConfig="blogTableConfig"
-			:paginator-config="{}">
+			:paginator-config="{}"
+		>
 			<template #preview="{ row }">
 				<JcImage
 					:width="100"
 					:height="60"
-					:src="row.previewUrl" />
+					:src="row.previewUrl"
+				/>
 			</template>
 			<template #tags="{ row }">
 				<div
 					class="tag-list"
-					v-if="row.tags.length">
+					v-if="row.tags.length"
+				>
 					<el-tag
 						v-for="tag in row.tags"
 						:key="tag.id"
@@ -110,16 +114,19 @@ const usePageContent = {
 		<JcDialog
 			v-model="dialogVisable"
 			width="100%"
-			title="编辑博客">
+			title="编辑博客"
+		>
 			<JcForm
 				@submit="handleSubmit"
 				v-model="curBlogInfo"
-				v-bind="blogFormConfig">
+				v-bind="blogFormConfig"
+			>
 				<template #htmlContent>
 					<Editor
 						v-if="curBlogInfo"
 						:data="curBlogInfo.htmlContent"
-						:ref="setRef('editorRef')" />
+						:ref="setRef('editorRef')"
+					/>
 				</template>
 			</JcForm>
 		</JcDialog>

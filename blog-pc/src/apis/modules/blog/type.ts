@@ -19,6 +19,7 @@ export interface BlogItem {
 	previewUrl?: any
 	description?: string
 	htmlContent: string
+	mdContent: string
 	status: BlogStatus
 	categoryName?: string
 	lookNums: number

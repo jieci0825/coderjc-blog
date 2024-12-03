@@ -5,6 +5,7 @@ const createBlogRules = {
 	previewUrl: new Rule().isString(),
 	description: new Rule().isString().min(0).max(200),
 	htmlContent: new Rule().isString().required(),
+	mdContent: new Rule().isString().required(),
 	status: new Rule().enum([0, 1, 2]).required(),
 	tagIds: new Rule().isArray()
 }

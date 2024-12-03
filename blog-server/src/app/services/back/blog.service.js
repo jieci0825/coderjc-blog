@@ -23,6 +23,7 @@ async function createBlog(data) {
 		title: data.title,
 		description: data.description,
 		html_content: data.htmlContent,
+		md_content: data.mdContent,
 		status: data.status,
 		author_id: data.authorId,
 		category_id: data.categoryId || null
@@ -146,6 +147,7 @@ async function editBlog(data) {
 		title: data.title,
 		description: data.description,
 		html_content: data.htmlContent,
+		md_content: data.mdContent,
 		status: data.status,
 		category_id: data.categoryId || null
 	}

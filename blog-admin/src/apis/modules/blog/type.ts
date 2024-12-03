@@ -13,6 +13,7 @@ export interface BlogItem {
 	previewUrl?: any
 	description?: string
 	htmlContent: string
+	mdContent: string
 	status: BlogStatus
 	categoryName?: string
 	lookNums: number
@@ -28,6 +29,7 @@ export interface CreateBlogParams {
 	previewUrl?: string
 	description?: string
 	htmlContent: string
+	mdContent: string
 	status: BlogStatus
 	tagIds: number[]
 	categoryId?: number

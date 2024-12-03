@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { formatTime } from '@/utils'
+import { computed } from 'vue'
+import { Marked } from 'marked'
 import type { BlogDetailContentEmits, BlogDetailContentProps } from '../types'
 
 const props = defineProps<BlogDetailContentProps>()
 const emits = defineEmits<BlogDetailContentEmits>()
+
+const marked = new Marked()
+
+const htmlContent = computed(() => {
+	const content = props.blogInfo.mdContent || props.blogInfo.htmlContent || ''
+	return marked.parse(content)
+})
 </script>
 
 <template>
@@ -18,10 +27,12 @@ const emits = defineEmits<BlogDetailContentEmits>()
 				<div
 					@click="emits('like')"
 					:class="[props.blogInfo.isLike ? 'active' : '']"
-					class="show-item">
+					class="show-item"
+				>
 					<span
 						:class="[props.blogInfo.isLike ? 'icon-like2-full' : 'icon-like2']"
-						class="iconfont"></span>
+						class="iconfont"
+					></span>
 					<span class="value">{{ props.blogInfo.likeNums }}</span>
 				</div>
 				<div class="show-item">
@@ -31,8 +42,9 @@ const emits = defineEmits<BlogDetailContentEmits>()
 			</div>
 		</div>
 		<div
-			v-html="props.blogInfo.htmlContent"
-			class="main markdown-body"></div>
+			v-html="htmlContent"
+			class="main markdown-body"
+		></div>
 	</div>
 </template>
 

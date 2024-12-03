@@ -34,15 +34,16 @@ async function highlight() {
 	if (!preList.length) return
 
 	for (const pre of preList) {
-		const parent = pre.parentNode as HTMLElement
+		// const parent = pre.parentNode as HTMLElement
 		// 获取父节点的 data-language 属性值
-		const lang = parent.getAttribute('data-language')
+		const code = pre.querySelector('code')
+		const lang = code?.className.split('language-')[1]
 		const formatCode = await codeToHtml(pre.textContent!, {
 			lang: lang || 'javascript',
 			theme: 'night-owl'
 		})
-		parent.innerHTML = ''
-		parent.innerHTML = formatCode
+		// parent.innerHTML = formatCode
+		pre.innerHTML = formatCode
 	}
 }
 
@@ -102,7 +103,8 @@ const switchLike = () => {
 				<BlogDetailContent
 					@like="switchLike"
 					v-if="blogInfo"
-					:blog-info="blogInfo">
+					:blog-info="blogInfo"
+				>
 				</BlogDetailContent>
 				<BlogDetailComment />
 			</div>

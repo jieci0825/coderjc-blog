@@ -35,6 +35,11 @@ Blog.init(
 			allowNull: false,
 			comment: 'html 格式的内容'
 		},
+		md_content: {
+			type: DataTypes.TEXT('long'),
+			allowNull: false,
+			comment: 'md 格式的内容'
+		},
 		status: {
 			type: DataTypes.INTEGER,
 			allowNull: false,

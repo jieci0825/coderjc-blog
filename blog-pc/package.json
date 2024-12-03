@@ -16,6 +16,7 @@
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
     "element-plus": "^2.8.0",
+    "marked": "^15.0.3",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "spark-md5": "^3.0.2",

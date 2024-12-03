@@ -18,6 +18,7 @@ const blogData: CreateBlogParams = reactive({
 	previewUrl: '',
 	description: '',
 	htmlContent: '',
+	mdContent: '',
 	status: EBlogStatus.PUBLISH,
 	tagIds: [],
 	categoryId: 0
@@ -72,6 +73,7 @@ const handlePublish = async (data: CreateBlogParams) => {
 // 提交博客数据
 async function submitBlogData(blogData: CreateBlogParams, message: string) {
 	blogData.htmlContent = refs.editorRef.getHtml()
+	blogData.mdContent = refs.editorRef.getMarkdown()
 	await blogApi.reqCreateBlog(blogData)
 	ElMessage.success(message)
 	reset()
@@ -107,21 +109,25 @@ function submitIntercept() {
 			<el-input
 				:size="size"
 				v-model="blogData.title"
-				placeholder="请输入博客标题..."></el-input>
+				placeholder="请输入博客标题..."
+			></el-input>
 			<el-icon
 				@click="isFull = !isFull"
 				:size="30"
-				class="icon">
+				class="icon"
+			>
 				<FullScreen v-if="!isFull" />
 				<Close v-else />
 			</el-icon>
 			<el-button
 				@click="handleDraft"
 				:size="size"
-				style="margin-left: 20px">
+				style="margin-left: 20px"
+			>
 				<el-icon
 					style="margin-right: 5px"
-					:size="20">
+					:size="20"
+				>
 					<MessageBox />
 				</el-icon>
 				草稿箱</el-button
@@ -129,10 +135,12 @@ function submitIntercept() {
 			<el-button
 				@click="openPublishDrawer"
 				:size="size"
-				type="primary">
+				type="primary"
+			>
 				<el-icon
 					style="margin-right: 5px"
-					:size="20">
+					:size="20"
+				>
 					<Position />
 				</el-icon>
 				发布</el-button
@@ -141,15 +149,18 @@ function submitIntercept() {
 		<div class="content">
 			<Editor
 				:data="blogData.htmlContent"
-				:ref="setRef('editorRef')" />
+				:ref="setRef('editorRef')"
+			/>
 		</div>
 
 		<JcDrawer
 			title="发布博客"
-			v-model="visible">
+			v-model="visible"
+		>
 			<JcForm
 				@submit="handlePublish"
-				v-bind="publishFormConfig">
+				v-bind="publishFormConfig"
+			>
 				<template #tagHeader>
 					<div style="font-size: 14px">搜索并选择需要添加的标签</div>
 				</template>

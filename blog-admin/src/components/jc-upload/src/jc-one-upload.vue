@@ -31,8 +31,6 @@ const onOneChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
 	})
 
 	const curFileType = uploadFile.raw?.type!
-	console.log('🚢 ~ 当前打印的内容 ~ curFileType:', curFileType)
-	console.log(types)
 	if (types && !types.includes(curFileType)) {
 		ElMessage.error(`文件格式不正确，当前文件格式${curFileType}`)
 		return
@@ -90,10 +88,12 @@ const oneTip = computed(() => {
 <template>
 	<div
 		v-if="jcUploadInject?.model === 'one'"
-		class="one-upload-wrapper">
+		class="one-upload-wrapper"
+	>
 		<div
 			:style="jcUploadInject?.oneStyle"
-			class="one-upload">
+			class="one-upload"
+		>
 			<el-upload
 				v-bind="jcUploadInject?.otherELConfig"
 				:show-file-list="false"
@@ -103,19 +103,22 @@ const oneTip = computed(() => {
 				:on-exceed="handleExceed"
 				:auto-upload="false"
 				ref="oneUploadRef"
-				action="#">
+				action="#"
+			>
 				<el-icon :size="25"><Plus /></el-icon>
 			</el-upload>
 
 			<!-- 预览 -->
 			<div
 				v-if="onePreviewImage"
-				class="preview-box">
+				class="preview-box"
+			>
 				<div class="mask">
 					<div class="actions">
 						<div
 							@click="handleOneEdit"
-							class="action-item">
+							class="action-item"
+						>
 							<el-icon :size="18">
 								<Edit />
 							</el-icon>
@@ -123,7 +126,8 @@ const oneTip = computed(() => {
 						</div>
 						<div
 							@click="handleOnePreview"
-							class="action-item">
+							class="action-item"
+						>
 							<el-icon :size="18">
 								<ZoomIn />
 							</el-icon>
@@ -131,7 +135,8 @@ const oneTip = computed(() => {
 						</div>
 						<div
 							@click="handleOneDelete"
-							class="action-item">
+							class="action-item"
+						>
 							<el-icon :size="18">
 								<Delete />
 							</el-icon>
@@ -141,7 +146,8 @@ const oneTip = computed(() => {
 				</div>
 				<img
 					:src="onePreviewImage"
-					alt="加载失败" />
+					alt="加载失败"
+				/>
 			</div>
 		</div>
 		<div class="tip-box">

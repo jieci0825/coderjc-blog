@@ -65,6 +65,8 @@ async function refresh(ctx) {
 	}
 	const token = rt.replace('Bearer ', '')
 
+	const { REFRESH_TOKEN_EXPIRED_ERROR_CODE } = global.config.TokenConfig
+
 	// 开始解析token
 	try {
 		const { TokenConfig } = global.config
@@ -87,9 +89,9 @@ async function refresh(ctx) {
 		// token 过期 TokenExpiredError
 		// token 无效 JsonWebTokenError
 		if (error.name === 'TokenExpiredError') {
-			throw new AuthFailed('登录凭证已过期，请重新登录')
+			throw new AuthFailed('登录凭证已过期，请重新登录', REFRESH_TOKEN_EXPIRED_ERROR_CODE)
 		} else if (error.name === 'JsonWebTokenError') {
-			throw new AuthFailed('登录凭证无效，请重新登录')
+			throw new AuthFailed('登录凭证无效，请重新登录', REFRESH_TOKEN_EXPIRED_ERROR_CODE)
 		} else {
 			throw error
 		}

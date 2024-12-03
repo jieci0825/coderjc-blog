@@ -4,13 +4,11 @@ const { Role } = require('@/app/models/role.model')
 const { Captcha } = require('@model/captcha.model')
 const { Validator } = require('@/validator')
 
-const TOKEN_EXPIRED_ERROR_CODE = 9999
-const JSON_WEBTOKEN_ERROR_CODE = 8888
-
 /**
  * 校验 token
  */
 const verifyToken = async (ctx, next) => {
+	const { TOKEN_EXPIRED_ERROR_CODE } = global.config.TokenConfig
 	const authorization = ctx.request.headers.authorization || ctx.request.headers.Authorization
 	if (!authorization) {
 		throw new Forbidden('请携带 Token')
@@ -72,6 +70,8 @@ const verifyCaptcha = async (ctx, next) => {
  * 校验前台 token
  */
 const verifyFrontToken = async (ctx, next) => {
+	const { TOKEN_EXPIRED_ERROR_CODE, JSON_WEBTOKEN_ERROR_CODE } = global.config.TokenConfig
+
 	const authorization = ctx.request.headers.authorization || ctx.request.headers.Authorization
 
 	// 如果没有携带 token 则抛出错误
@@ -103,6 +103,8 @@ const verifyFrontToken = async (ctx, next) => {
  * 刷新 token
  */
 const refresh = async (ctx, next) => {
+	const { REFRESH_TOKEN_EXPIRED_ERROR_CODE } = global.config.TokenConfig
+
 	const { grantType, refreshToken: rt } = ctx.request.body
 	if (grantType !== 'refresh_token') {
 		throw new ParamsError('刷新 token 类型错误')
@@ -126,9 +128,9 @@ const refresh = async (ctx, next) => {
 		// token 过期 TokenExpiredError
 		// token 无效 JsonWebTokenError
 		if (error.name === 'TokenExpiredError') {
-			throw new AuthFailed('刷新令牌 token 过期')
+			throw new AuthFailed('刷新令牌 token 过期', REFRESH_TOKEN_EXPIRED_ERROR_CODE)
 		} else if (error.name === 'JsonWebTokenError') {
-			throw new AuthFailed('无效的刷新令牌 token')
+			throw new AuthFailed('无效的刷新令牌 token', REFRESH_TOKEN_EXPIRED_ERROR_CODE)
 		} else {
 			throw error
 		}
