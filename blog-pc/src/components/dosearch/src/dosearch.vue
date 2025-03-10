@@ -4,6 +4,7 @@ import { ref, nextTick, watch } from 'vue'
 import { KeyEnum, type IFooterTips } from './dosearch.type'
 import { useEventListener } from '@/hooks'
 import { debounce } from '@/utils'
+import { useRouter} from 'vue-router'
 import type { BlogItem } from '@/apis/modules/blog/type'
 
 const visibleModel = defineModel<boolean>('visible', { required: true, default: false })
@@ -131,11 +132,13 @@ const onKeypad = (e: KeyboardEvent) => {
 	}
 }
 
+const $router = useRouter()
+
 // 确认结果
 const handleConfirm = () => {
 	if (!selectItem.value) return
-	// todo: 然后跳转详情页面，根据分类跳转
-	window.open(`/blog-detail/${selectItem.value.id}`, '_blank')
+	// window.open(`/blog-detail/${selectItem.value.id}`, '_blank')
+    $router.push(`/blog-detail/${selectItem.value.id}`)
 	// 关闭搜索界面
 	destroy()
 }
