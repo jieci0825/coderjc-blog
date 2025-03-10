@@ -115,6 +115,8 @@ const setContentScrollTop = (top: number = 0) => {
 
 // 监听键盘事件
 const onKeypad = (e: KeyboardEvent) => {
+    if (!visibleModel.value) return
+
     const keyName = e.code
     if (keyName === KeyEnum.BOTTOM) {
         e.preventDefault()
@@ -162,19 +164,13 @@ const onComposingEnd = () => {
     isComposing.value = false
 }
 
-const { dom: keydownDom } = useEventListener(document, 'keydown', onKeypad)
+useEventListener(document, 'keydown', onKeypad)
 useEventListener(searchInputRef, 'compositionstart', onComposingStart)
 useEventListener(searchInputRef, 'compositionend', onComposingEnd)
-
-// 解绑事件
-function unbindEvent() {
-    keydownDom && keydownDom.removeEventListener('keydown', onKeypad)
-}
 
 function destroy() {
     keyword.value = ''
     clearQueryBlogList()
-    unbindEvent()
     visibleModel.value = false
 }
 
