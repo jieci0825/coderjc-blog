@@ -42,7 +42,9 @@ async function highlight() {
             lang: lang || 'javascript',
             theme: 'night-owl'
         })
-        parent.innerHTML = formatCode
+        const div = document.createElement('div')
+        div.innerHTML = formatCode
+        parent.replaceChild(div, pre)
     }
 }
 
